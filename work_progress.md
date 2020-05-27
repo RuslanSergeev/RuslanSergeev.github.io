@@ -1,4 +1,5 @@
-## Конспект процесса сборки системы под debian/android
+# Конспект процесса сборки системы под debian/android
+
 
 ### Фактически проделанная работа.
 1. Большие изменения в speechbox_port/install.sh
@@ -6,6 +7,7 @@
 3. Начальная версия проекта под андроид: `Eigen`
 4. Сравнение производительности `Eigen` и `nsimd`
 5. Миграция на `TensorFlowLite`
+
 
 ### Замораживаем версии пакетов.
 Все компоненты заморожены на следующих версиях и
@@ -19,10 +21,11 @@
  из deb, ставится скриптом
 6. `pybind11-dev_2.0.1-4_all`, из deb, ставится скриптом
 7. `libtbb-dev`, `libtbb2`, из deb, ставятся скриптом
-8. `cuda-10.2`, `NVIDIA 440.33.01` - установщик распространяется вместе с speechbox_port
+8. `cuda-10.1`, `NVIDIA 435` - установщик распространяется вместе с speechbox_port
 9. `python3.7.5`, `torch`, `torchvision`, `venv` -   
 команды установки прописаны в скрипте. окружение для торч
 формируется и прописывается в bashrc.
+
 
 ### Кандидаты на выпил из проекта
 1. boost - не нужен в нашем проекте. вхождения заменяются на более
@@ -87,10 +90,25 @@ sudo reboot #reboot required
 После успешной установки драйверов необходимо перезагрузить систему и
 обновить содержимое `.bashrc`
 
-4. Обрезал по минимальной версии.
-оствил только Eigen и libzip
+
+### Проброс `bash`  
+Запуск OpenSSL сессии:
+```bash
+sudo openconnect --certificate /opt/Sergeev_R@Dept07.pfx \
+-b tusken.1c.ru --user=$USERNAME --key-password=$PASSWORD_FROM_MAIL
+```
+Запуск ssh:
+```bash
+ssh ruslan@10.70.4.172
+```
+
 
 ### Проброс `Jupyter lab`
+Конфигурация пароля на сервере:
+```bash
+jupyter-notebook --generate-config
+jupyter-notebook password
+```
 Скрипт для запуска на сервере:
 ```bash
 nohup jupyter lab --port=9000 --no-browser &
@@ -107,6 +125,8 @@ ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
 sleep 0.1
 chromium-browser "http://localhost:$LOCAL_PORT" &
 ```
+
+
 ### Планы
  - В скриптах обучения проверять необходимые файлы только перед тем, как они
 понадобились. Или в master-скрипте если включена соответствующая стадия.
