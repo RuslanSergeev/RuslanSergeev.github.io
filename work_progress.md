@@ -1,4 +1,4 @@
-# Конспект процесса сборки системы под debian/android
+# Конспект рабочего процесса
 
 
 ### Фактически проделанная работа.
@@ -125,7 +125,9 @@ ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
 sleep 0.1
 chromium-browser "http://localhost:$LOCAL_PORT" &
 ```
-
+### Настройка VNC
+[ссылка от Артёма](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04) Пока не проверено, но у Артёма этот вариант  
+заработал.
 
 ### Планы
  - В скриптах обучения проверять необходимые файлы только перед тем, как они
