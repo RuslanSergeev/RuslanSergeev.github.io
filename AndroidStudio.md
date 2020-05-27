@@ -114,7 +114,4 @@ average: 54.409782% len: 31.908160
 ```
 
 
-<div align="center">
-<br><br><br>
-<a href="index.md">Домой</a>
-</div>
+[Домой](index.md)

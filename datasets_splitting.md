@@ -66,7 +66,4 @@
 `test_datasets`.
 
 
-<div align="center">
-<br><br><br>
-<a href="index.md">Домой</a>
-</div>
+[Домой](index.md)

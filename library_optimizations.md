@@ -14,7 +14,4 @@ aarch64-linux-gnu-objdump -S libnative-lib.so > native_disasm.s
 
 # Заметки по nsimd
 
-<div align="center">
-<br><br><br>
-<a href="index.md">Домой</a>
-</div>
+[Домой](index.md)
