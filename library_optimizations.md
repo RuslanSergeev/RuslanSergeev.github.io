@@ -14,4 +14,4 @@ aarch64-linux-gnu-objdump -S libnative-lib.so > native_disasm.s
 
 # Заметки по nsimd
 
-[Домой](index.md)
+[Домой](index.html)

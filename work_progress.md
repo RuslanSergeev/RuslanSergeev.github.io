@@ -132,4 +132,4 @@ chromium-browser "http://localhost:$LOCAL_PORT" &
 понадобились. Или в master-скрипте если включена соответствующая стадия.
 
 
-[Домой](index.md)
+[Домой](index.html)

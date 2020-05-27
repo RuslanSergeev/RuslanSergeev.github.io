@@ -93,4 +93,4 @@ Microsoft - Майкрософт
 
 
 
-[Домой](index.md)
+[Домой](index.html)
