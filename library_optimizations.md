@@ -13,3 +13,8 @@ aarch64-linux-gnu-objdump -S libnative-lib.so > native_disasm.s
 3. Поставил и потестил библиотеку **nsimd**
 
 # Заметки по nsimd
+
+<div align="center">
+<br><br><br>
+<a href="index.md">Домой</a>
+</div>
