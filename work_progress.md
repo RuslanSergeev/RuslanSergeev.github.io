@@ -3,6 +3,9 @@
 ### Фактически проделанная работа.
 1. Большие изменения в speechbox_port/install.sh
 2. Рефакторинг CMakeLists.txt
+3. Начальная версия проекта под андроид: `Eigen`
+4. Сравнение производительности `Eigen` и `nsimd`
+5. Миграция на `TensorFlowLite`
 
 ### Замораживаем версии пакетов.
 Все компоненты заморожены на следующих версиях и
@@ -87,6 +90,23 @@ sudo reboot #reboot required
 4. Обрезал по минимальной версии.
 оствил только Eigen и libzip
 
+### Проброс `Jupyter lab`
+Скрипт для запуска на сервере:
+```bash
+nohup jupyter lab --port=9000 --no-browser &
+```
+Скрипт для запуска на домашней машине:
+```bash
+REMOTE_PORT=9000
+LOCAL_PORT=8888
+USER_NAME=ruslan
+SERVER_IP="10.70.4.172"
+
+echo "port forwarding..."
+ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
+sleep 0.1
+chromium-browser "http://localhost:$LOCAL_PORT" &
+```
 ### Планы
  - В скриптах обучения проверять необходимые файлы только перед тем, как они
 понадобились. Или в master-скрипте если включена соответствующая стадия.
