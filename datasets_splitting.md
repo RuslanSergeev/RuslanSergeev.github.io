@@ -24,13 +24,18 @@
 
 Структура конфигурационного файла будет незначительно изменена на следующую:
 ```json
+{
 "paths": {
         "comment" : "<<< {откуда_взять,  куда_сформировать_датасет}",
-        "corpus_paths" : [
-           {"/mount/am_server1/news.tar", "/mount/data_server1/news"}
-           "/mount/am_server1/news2.tar", "/mount/data_server1/movies"
-           "/mount/am_server_i/news7.tar", "/mount/data_server_k/films"
-           "/mount/am_server_i/movies.tar", "/mount/data_server_m/commercials"
+        "means" : "means/location", #use as means for decoder if specified
+        "datasets" : [
+          { "audio": "/mount/am_server1/news.tar",  #check read perms
+            "data": "/mount/data_server1/news.data", #check write perms
+             "role": "train",  "parts": 0.3 },
+          { "audio": "none",  #if none not create
+            "data": "/mount/data_server1/movies.data",  
+            "role": "train",  "parts": 0.1415 },
+           ... many more.
         ]
 },
 "stages": {
@@ -43,15 +48,8 @@
         "train dnet"      :  true,
         "compile model"   :  true,
         "test model"      :  true
-    },
-"comment": "<<< путь к датасету, какую его часть берём",
-"train datasets" : [
-        {"/mount/data_server_i/news/news_j.data", 0.3},
-        {"/mount/data_server_k/dataset_m.data", 0.14}
-    ],
-"test datasets" : [
-        { "/mount/data_server_l/news/news1.data", 0.15}
-    ]
+    }
+}
 ```
 
 #### Формирование датасетов.  
@@ -64,6 +62,30 @@
 Использование датасетов произойдёт на стадии обучения нейронной сети.
 Имена использованных датасетов предоставляются в разделах `train_datasets` и
 `test_datasets`.
+
+## Ход работы
+
+#### Использование вектора `means`
+Значения `means` вычитаются из вектора фичей в процессоре `cms`. Это происходит
+при формировании датасета, а также при обработке аудио-данных (в приложении).
+
+#### Переделана секция `datasets`
+```json
+{
+    "datasets" : [
+      {
+        "audio": "/mount/am_server1/news.tar", #check read perms
+        "data": "/mount/data_server1/news.data", #check write perms
+         "role": "train",  
+         "parts": 0.3
+      }
+    ]
+}
+```
+Eсли секция `audio` содержит `none`, то обработка корпуса не будет произведена.
+Если не присутствует ни одного необработанного файла, а также отсутствует описание
+процесса `cms[means]` необходимо завершить дальнейшую обработку корпуса.
+
 
 
 [Домой](index.html)
