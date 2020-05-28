@@ -34,8 +34,7 @@
              "role": "train",  "parts": 0.3 },
           { "audio": "none",  #if none not create
             "data": "/mount/data_server1/movies.data",  
-            "role": "train",  "parts": 0.1415 },
-           ... many more.
+            "role": "train",  "parts": 0.1415 }, #many more
         ]
 },
 "stages": {
