@@ -28,20 +28,20 @@
 "paths": {
         "comment" : "<<< {откуда_взять,  куда_сформировать_датасет}",
         "means" : "means/location", #use as means for decoder if specified
-        "datasets" : [
-          { "audio": "/mount/am_server1/news.tar",  #check read perms
-            "data": "/mount/data_server1/news.data", #check write perms
-             "role": "train",  "parts": 0.3 },
-          { "audio": "none",  #if none not create
-            "data": "/mount/data_server1/movies.data",  
-            "role": "train",  "parts": 0.1415 }, #many more
-        ]
 },
+"datasets" : [
+  { "audio": "/mount/am_server1/news.tar",  #check read perms
+    "data": "/mount/data_server1/news.data", #check write perms
+     "role": "train",  "parts": 0.3 },
+  { "audio": "none",  #if none not create
+    "data": "/mount/data_server1/movies.data",  
+    "role": "train",  "parts": 0.1415 }, #many more
+],
 "stages": {
         "comment" : "<<< какие стадии необходимо запускать (yes/no) >>>",
-        "clean work dir"  :  true,  #вместо clean_and_untar
-        "prepare_utt"     :  true,  #новая старая стадия
-        "make lm"       :    true,  #переименовали стадию make_arpa, utt участвует в обогащении.
+        "clean"           :  true,  #вместо clean_and_untar
+        "prepare utt"     :  true,  #новая старая стадия
+        "make lm"         :  true,  #переименовали стадию make_arpa, utt участвует в обогащении.
         "enhance dict"    :  true,  #обогатить и на основе арпы (она сделает текстовичок)
         "make datasets"   :  true,  #на основе обогащ словаря!
         "train dnet"      :  true,
@@ -85,6 +85,30 @@ Eсли секция `audio` содержит `none`, то обработка к
 Если не присутствует ни одного необработанного файла, а также отсутствует описание
 процесса `cms[means]` необходимо завершить дальнейшую обработку корпуса.
 
+Необходимо формировать один вектор `means` для всех датасетов. Как взвешенная
+сумма `means` всех датасетов.
 
+#### Существующие файлы
+Теперь на каждой стадии могут использоваться уже Существующие файлы.
+```json
+{
+"stages": {
+        "comment" : "<<< какие стадии необходимо запускать (yes/no) >>>",
+        "clean"           :  "yes",
+        "prepare utt"     :  "yes",
+        "make lm"         :  "/data1/models/mega_news.lm.bin",
+        "enhance dict"    :  "no",
+        "make datasets"   :  "yes",
+        "train dnet"      :  "/data1/models/lstm_5l_400n_1300hrs.numpy",
+        "compile model"   :  "no",
+        "test model"      :  "no"
+    }
+}
+```
+
+####Формирование атрансов для каждого датасета
+Теперь общий файл атрансов формируется только если стадия `prepare_utt`
+не пропускается. Для всех датасетов, для которых существуют аудио-корпусы,
+будут сформированы атрансы. 
 
 [Домой](index.html)
