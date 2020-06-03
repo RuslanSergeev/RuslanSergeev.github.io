@@ -94,12 +94,14 @@ sudo reboot #reboot required
 ### Проброс `bash`  
 Запуск OpenSSL сессии:
 ```bash
+#/usr/bin/sshStart.sh
 sudo openconnect --certificate /opt/Sergeev_R@Dept07.pfx \
 -b tusken.1c.ru --user=$USERNAME --key-password=$PASSWORD_FROM_MAIL
 ```
 Запуск ssh:
 ```bash
-ssh ruslan@10.70.4.172
+##/usr/bin/sshConnect.sh
+ssh ruslan@YO.UR.IP.ADD
 ```
 
 
@@ -111,20 +113,34 @@ jupyter-notebook password
 ```
 Скрипт для запуска на сервере:
 ```bash
+#/usr/bin/startJupyter.sh
 nohup jupyter lab --port=9000 --no-browser &
 ```
 Скрипт для запуска на домашней машине:
 ```bash
+#/usr/bin/sshJupyter.sh
 REMOTE_PORT=9000
 LOCAL_PORT=8888
 USER_NAME=ruslan
-SERVER_IP="10.70.4.172"
+SERVER_IP="YO.UR.IP.ADD"
 
 echo "port forwarding..."
 ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
 sleep 0.1
 chromium-browser "http://localhost:$LOCAL_PORT" &
 ```
+### Проброс `Atom` и `sshfs`
+```shell
+#install sshfs
+sudo apt install sshfs
+```
+
+```shell
+#/usr/bin/sshMount.sh
+sshfs ruslan@YO.UR.IP.ADD:/home/ruslan /mnt/1c/ruslan/
+echo 'now can go to /mnt/1c/ruslan/'
+```
+
 ### Настройка VNC
 [ссылка от Артёма](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04) Пока не проверено, но у Артёма этот вариант  
 заработал.
