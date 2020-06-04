@@ -53,7 +53,7 @@ sudo apt install -f
 Если уже установлен Nouveau драйвер (дефолтный)
 The Nouveau kernel driver is currently in use...
 Переконфигурировать initramfs без nouveau
-```
+```shell
 sudo touch /etc/modprobe.d/blacklist-nouveau.conf
 echo blacklist nouveau > /etc/modprobe.d/blacklist-nouveau.conf
 echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nouveau.conf
