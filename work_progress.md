@@ -1,7 +1,7 @@
 # Конспект рабочего процесса
 
 
-### Фактически проделанная работа.
+# Фактически проделанная работа.
 1. Большие изменения в speechbox_port/install.sh
 2. Рефакторинг CMakeLists.txt
 3. Начальная версия проекта под андроид: `Eigen`
@@ -9,7 +9,7 @@
 5. Миграция на `TensorFlowLite`
 
 
-### Замораживаем версии пакетов.
+# Замораживаем версии пакетов.
 Все компоненты заморожены на следующих версиях и
 теперь распространяются вместе со `speechbox_port`.
 Все зависимости ставятся автоматически из `install.sh`.
@@ -27,14 +27,14 @@
 формируется и прописывается в bashrc.
 
 
-### Кандидаты на выпил из проекта
+# Кандидаты на выпил из проекта
 1. boost - не нужен в нашем проекте. вхождения заменяются на более
 простой код.
 2. libtbb - перешли на std::threads. нужно выпилить оставшиеся куски и
 удалить эту зависимость из проекта.
 
 
-### Ошибки во время сборки
+# Ошибки во время сборки
 1. **При установке `cmake`: не установлен openSSL**
 ```shell
 # добавлено в скрипт
@@ -90,71 +90,11 @@ sudo reboot #reboot required
 После успешной установки драйверов необходимо перезагрузить систему и
 обновить содержимое `.bashrc`
 
-### Проблемы с клавиатурой
-Если после обновления драйвера возникли проблемы с клавиатурой и 
+# Проблемы с клавиатурой
+Если после обновления драйвера возникли проблемы с клавиатурой и
 мышью, помогает установка:
 ```bash
 sudo apt-get install xserver-xorg-input-all
 ```
-
-
-### Проброс `bash`  
-Запуск OpenSSL сессии:
-```bash
-#/usr/bin/sshStart.sh
-sudo openconnect --certificate /opt/Sergeev_R@Dept07.pfx \
--b tusken.1c.ru --user=$USERNAME --key-password=$PASSWORD_FROM_MAIL
-```
-Запуск ssh:
-```bash
-##/usr/bin/sshConnect.sh
-ssh ruslan@YO.UR.IP.ADD
-```
-
-
-### Проброс `Jupyter lab`
-Конфигурация пароля на сервере:
-```bash
-jupyter-notebook --generate-config
-jupyter-notebook password
-```
-Скрипт для запуска на сервере:
-```bash
-#/usr/bin/startJupyter.sh
-nohup jupyter lab --port=9000 --no-browser &
-```
-Скрипт для запуска на домашней машине:
-```bash
-#/usr/bin/sshJupyter.sh
-REMOTE_PORT=9000
-LOCAL_PORT=8888
-USER_NAME=ruslan
-SERVER_IP="YO.UR.IP.ADD"
-
-echo "port forwarding..."
-ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
-sleep 0.1
-chromium-browser "http://localhost:$LOCAL_PORT" &
-```
-### Проброс `Atom` и `sshfs`
-```shell
-#install sshfs
-sudo apt install sshfs
-```
-
-```shell
-#/usr/bin/sshMount.sh
-sshfs ruslan@YO.UR.IP.ADD:/home/ruslan /mnt/1c/ruslan/
-echo 'now can go to /mnt/1c/ruslan/'
-```
-
-### Настройка VNC
-[ссылка от Артёма](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04) Пока не проверено, но у Артёма этот вариант  
-заработал.
-
-### Планы
- - В скриптах обучения проверять необходимые файлы только перед тем, как они
-понадобились. Или в master-скрипте если включена соответствующая стадия.
-
 
 [Домой](index.html)
