@@ -63,11 +63,13 @@ sudo apt install xfce4 xfce4-goodies
 sudo vncpasswd
 vncserver
 ```
-Перед запуском сервера необходимо переписать конфиг:
+Перед запуском сервера необходимо переписать конфиг ~/.vnc/xstartup:
 ```shell
-#~/.vnc/xstartup
+#!/bin/bash
 xrdb $HOME/.Xresources
 startxfce4 &
+export XKL_XMODMAP_DISABLE=1
+/etc/X11/Xsession
 ```
 **На стороне клиента** : поставить клиент и запустить его:
 ```shell
@@ -83,7 +85,7 @@ ssh -L 5901:localhost:5901 -C -N -l $USERNAME $REMOTE_IP
 # Настройка VPN
 [Оригинальная инструкция](https://www.cyberciti.biz/faq/howto-setup-openvpn-server-on-ubuntu-linux-14-04-or-16-04-lts/)
 
-**Получить публичный IP на стороне клиента:**
+**Получить публичный IP на стороне клиента и сервера:**
 ```shell
 host myip.opendns.com resolver1.opendns.com
 ```
