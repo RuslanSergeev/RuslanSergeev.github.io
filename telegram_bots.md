@@ -2,7 +2,7 @@
 
 ![Telegram_bots](assets/bot_father.jpg)
 
-# Создание бота  
+## Создание бота  
 Создание ботов происходит в боте [@BotFather](https://t.me/botfather).
 Необходимо отправить команду `/newbot`.
 
@@ -12,7 +12,7 @@
 Удобное управление ботами, их настройка и получение токенов созданных ботов
 доступно по команде `/mybots`.
 
-#Про токены и chat_id:  
+## Про токены и chat_id:  
 
 - `token` уникален для бота и выдаётся при его создании.
 - `chat_id` - идентификатор чата, в который вы хотите чтобы бот отправлял данные.
@@ -41,7 +41,7 @@ def telegram_bot_sendtext(bot_message):
     bot_token = 'XXX'
     bot_chatID = 'YYY'
     send_text = 'https://api.telegram.org/bot' + bot_token + \
-    '/sendMessage?chat_id=' + bot_chatID + $
+    '/sendMessage?chat_id=' + bot_chatID + '&parse_mode=Markdown&text=' + bot_message
 
     response = requests.get(send_text)
 
