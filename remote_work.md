@@ -54,8 +54,6 @@ echo 'now can go to /mnt/1c/ruslan/'
 # Настройка VNC
 [ссылка от Артёма](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04)
 **Этот вариант не заработал.**
-Отображается только белый квадрат без графики.
-Вероятно проблема в драйверах Nvidia.
 Поставить сервер:
 ```shell
 sudo apt install tightvncserver
