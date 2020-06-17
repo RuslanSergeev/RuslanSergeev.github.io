@@ -1,6 +1,7 @@
 # Добавление телеграм-интерфейсов в скрипты
 
-![Telegram_bots](assets/bot_father.jpg)
+![Telegram_bots](assets/bot_father.jpg)  
+
 [Исходная статья](https://medium.com/@ManHay_Hong/how-to-create-a-telegram-bot-and-send-messages-with-python-4cf314d9fa3e)
 
 ## Создание бота  
