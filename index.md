@@ -3,6 +3,7 @@
 [Установка speechbox, решение проблем](work_progress.md)  
 [Android studio и проект под Android](AndroidStudio.md)  
 [организация удалённой работы](remote_work.md)  
+[добавление телеграм-бота в скрипты](telegram_bots.md)
 <!-- [Организация работы в ближайшее время](metup_results.md)   -->
 
 # Решение задач
