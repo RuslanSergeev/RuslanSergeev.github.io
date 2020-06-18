@@ -52,3 +52,5 @@ def telegram_bot_sendtext(bot_message):
 test = telegram_bot_sendtext("Я по русски тоже могу, кстати. )")
 print(test)
 ```
+
+[Домой](index.html)
