@@ -8,8 +8,8 @@
 
 # Решение задач
 [Решение задачи разбиения датасета](tasks/datasets_splitting.md)    
-[Решение задачи дообогащения словаря](tasks/enhancement.md)
-[Задача параллельного обучения](tasks/train_parallell.md)
+[Решение задачи дообогащения словаря](tasks/enhancement.md)  
+[Задача параллельного обучения](tasks/train_parallell.md)  
 
 # Результаты тестов
 [Ускорение инференс-прохода под андроид](android_neural_networks.md)  
