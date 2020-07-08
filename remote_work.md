@@ -35,10 +35,15 @@ USER_NAME=ruslan
 SERVER_IP="YO.UR.IP.ADD"
 
 echo "port forwarding..."
-ssh -N -f -L "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
+sshpass -p "$USER_PASS" ssh -o StrictHostKeyChecking=no -N -f -L  "$LOCAL_PORT:localhost:$REMOTE_PORT" "$USERNAME@$SERVER_IP"
 sleep 0.1
 chromium-browser "http://localhost:$LOCAL_PORT" &
 ```
+Скрипт для остановки или перезагрузки `Jupyter` проброшенного через `ssh`
+```
+pkill -f "ssh.*localhost:$REMOTE_PORT"
+```
+
 # Проброс `Atom` и `sshfs`
 ```shell
 #install sshfs
