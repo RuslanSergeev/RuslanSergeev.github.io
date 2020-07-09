@@ -110,4 +110,40 @@ AsusHome - имя клиента которое мы указали.
 А также конфиг сервера:
 **/etc/openvpn/server/server.conf**
 
+
+# Профилирование `seedscope`
+
+[Страница проекта](https://github.com/jlfwong/speedscope#usage)
+
+Можно поставить `speedscope.app` локально, для последующего простмотра логов
+выполнения. А можно загружать на [speedscope.app](speedscope.app)
+Сначала добавляем репозиторий `nodejs` и ставим `speedscope`
+```bash
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install npm
+sudo npm install speedscope
+```
+
+Ставим пакет `pyspeedscope`
+```bash
+python3 -m pip install --upgrade pip
+python3 -m pip install pyspeedscope
+```
+
+Используем `pyspeedscope` в своих скриптах.
+```python
+import pyspeedscope
+with speedscope.track('logname.json'):
+        slow_method()
+```
+
+Далее можно смотреть в офлайне в удобном браузере:
+```bash
+speedscope logname.json
+```
+
+Можно также генерить логи для `speedscope` из [py-spy](https://pypi.org/project/py-spy/)
+подключаясь к уже выполняющимся процессам.
+
+
 [Домой](index.html)
