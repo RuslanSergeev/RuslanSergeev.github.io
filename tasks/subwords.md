@@ -53,8 +53,8 @@ cp subwords_work/model_name.dic ./news.dic
 | 50_000 | .minisub | **complete** | **minisub_work** | enhanced_minisub.dic |
 | 70_000 | .regsub | **complete** | no | |
 | 100_000 | .bigsub | **complete** | **bigsub_work** | enhanced_bigsub.dic |
-| 200_000 | .titansub | **complete** | no |
-| 300_000 | .colossub | **complete** | **colossub_work** | enhanced_colossub.dic
+| 200_000 | .titansub | **complete** | no | |
+| 300_000 | .colossub | **complete** | **colossub_work** | enhanced_colossub.dic |
 Конфигурационный файл один и тотже, но разные расширения `maga_news.conf`.
 
 [Домой](../index.html)

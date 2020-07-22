@@ -7,11 +7,11 @@
 <!-- [Организация работы в ближайшее время](metup_results.md)   -->
 
 # Решение задач
-[Решение задачи разбиения датасета](tasks/datasets_splitting.md)    
-[Решение задачи дообогащения словаря](tasks/enhancement.md)  
+[Решение задачи разбиения датасета](tasks/datasets_splitting.md)      
+[Решение задачи дообогащения словаря](tasks/enhancement.md)    
 [Задача параллельного обучения](tasks/train_parallell.md)  
-[Задача с сабвордами](tasks/subwords.md)
-[Ближайшие планы](tasks/plans.md)
+[Задача с сабвордами](tasks/subwords.md)  
+[Ближайшие планы](tasks/plans.md)  
 
 # Результаты тестов
 [Ускорение инференс-прохода под андроид](android_neural_networks.md)  
