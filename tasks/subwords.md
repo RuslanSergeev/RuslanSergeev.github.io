@@ -45,16 +45,20 @@ cp subwords_work/model_name.dic ./news.dic
 ## Текущее состояние в ручном режиме:
 
 Решено сделать несколько конфигов и выходных файлов:
-| Число сабов | расширение | lm_corpus | lm | dict |
-|---|---|---|---|---|
-| 5_000 | .quantumsub | **complete** | **quantumsub_work** | encanced_quantumsub.dic |
-| 15_000 | .nanosub |  **complete** | no | |
-| 20_000 | .microsub | no | no | |
-| 50_000 | .minisub | **complete** | **minisub_work** | enhanced_minisub.dic |
-| 70_000 | .regsub | **complete** | no | |
-| 100_000 | .bigsub | **complete** | **bigsub_work** | enhanced_bigsub.dic |
-| 200_000 | .titansub | **complete** | no | |
-| 300_000 | .colossub | **complete** | **colossub_work** | enhanced_colossub.dic |
+
+
+| Число сабов | расширение | lm_corpus | lm | dict |  
+|---|---|---|---|---|  
+| 5_000 | .quantumsub | **complete** | **quantumsub_work** | encanced_quantumsub.dic
+| 15_000 | .nanosub |  **complete** | no |
+| 20_000 | .microsub | no | no |
+| 50_000 | .minisub | **complete** | **minisub_work** | enhanced_minisub.dic
+| 70_000 | .regsub | **complete** | no |
+| 100_000 | .bigsub | **complete** | **bigsub_work** | enhanced_bigsub.dic
+| 200_000 | .titansub | **complete** | no |
+| 300_000 | .colossub | **complete** | **colossub_work** | enhanced_colossub.dic
+
+
 Конфигурационный файл один и тотже, но разные расширения `maga_news.conf`.
 
 [Домой](../index.html)
