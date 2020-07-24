@@ -62,6 +62,15 @@ cp subwords_work/model_name.dic ./news.dic
 
 ## Результаты тестов с сабвордами
 
+
+Скрипт для запуска тестирования:
+```bash
+#script testbench model binpath threads
+speechbox/scripts/testing/test_all.sh /data1/tests/8k /data1/models/quantumsub.aibox ../../bin/ 24
+```
+
+Результат:
+
 |  | quantumsub | minisub | bigsub | colossub | ph2500h |
 |---|---|---|---|---|---|
 | 8k/1c | 78.23/53.65 | 47.16/40.28 | 40.56/37.41 | 39.90/36.72 | 37.71/33.81
