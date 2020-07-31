@@ -1,0 +1,175 @@
+{
+    "model_name": "watson_model",
+    "paths": {
+        "comment" : "<<< Пути к входным файлам. глобальные  >>>",
+        "work_path": "/data1/watsonsub_work/",
+        "bin_path": "../../bin",
+        "lib_path": "../../lib",
+
+        "comment" : "<<< путь к словарю языка и списку фонем >>>",
+        "dictionary_path": "../../assets/dict_non_e.dic",
+        "phones_path": "../../assets/phones",
+
+        "comment" : "<<< путь к дополнительнаму списку иностранных слов: формата Microsoft    майкрософт >>>",
+        "ext_words_path": "none",
+
+        "comment" : "<<< путь к текстовым корпусам, конфигурации языковой модели, словарям >>>",
+        "lm_corpus_path": "/data1/subs/watsonsub/",
+        "lm_config_path": "/data1/subs/watsonsub/mega_news.conf.watsonsub",
+        "lm_abbrs_path": "none",
+        "lm_named_entities_path": "none",
+
+        "ready": {
+            "comment" : "<<< Пути к готовым файлам>>>",
+            "make_lm"         :  "none",
+            "enhance_dict"    :  "none",
+            "train_dnet"      :  "none",
+            "test_utterances" :  "none",
+            "test_model"      :  "none"
+        }
+    },
+    "datasets" : [],
+    "stages": {
+        "comment" : "<<< какие стадии необходимо запускать (true/false) >>>",
+        "clean"           :  false,
+        "make_utt"        :  false,
+        "make_lm"         :  true,
+        "enhance_dict"    :  true,
+        "make_datasets"   :  false,
+        "train_dnet"      :  false,
+        "compile_model"   :  false,
+        "test_model"      :  false
+    },
+    "common_settings": {
+        "comment": "<<< число потоков и зерно рандомайзера >>>",
+        "workers": 4,
+        "seed": 32576,
+        "comment": "<<< язык для обучения (ru_RU/en_US) >>>",
+        "main_lang": "ru_RU",
+        "comment": "<<< тип уведомлений: console или telegram >>>",
+        "notifier": "console",
+        "comment": "<<< данные телеграм-бота для отправки уведомлений >>>",
+        "bot_token": "your_bot_id",
+        "bot_chat": "your_chat_id"
+    },
+    "dataset_settings": {
+        "mode": 1,
+        "sil_mode": 2,
+        "sort": 0
+    },
+    "lm_settings": {
+        "comment": "Обрезка модели для устранения маловероятных выражений. Данный параметр необходим для удаления малоповторяющихся комбинаций слов - используется для сокращения размера модели. Неубывающий порядок, сначала юниграммы, значение - минимальное количество повторений комбинации слов в тексте.",
+        "prune": [1, 4, 5],
+        "comment": "Максимальное число юниграмм. Выбирается на основе частотной статистики (от 1 МЛН до 4 МЛН)",
+        "unigrams_topn": 1000000,
+        "punctuation": false,
+        "upper_casing": false,
+        "amlm_utterances_weight": 1.0,
+        "comment": "максимальное число юниграмм из lm, которые попадут в unknown",
+        "unigrams_topn": 2000000
+    },
+    "nn_settings": {
+        "restart": true,
+        "bidirectional": true,
+        "neurons": 256,
+        "comment": "число слоёв: либо целое число, например 5. Либо вектор при каскадном обучении, например [2, 3].",
+        "layers": [2, 2],
+		"loss": "mod_ctc",
+        "comment": "Тип функций потерь: mod_ctc - модифицированный вариант ctc, ctc - стандартный torch CTC",
+		"opt": "sgd",
+        "comment":"Тип оптимизатора: sgd, adam, adamw, rmsprop. Модификации с Теплыми рестартами: sgdr, adamwr",
+		"half": true,
+	"nn_half": false,
+        "comment":"Вычисление с HalfFloat. Доступно только при установленном APEX",
+		"opt_level": "O3",
+        "comment":"Уровень оптимизации HalfFloat: O0 - FP32(без оптимизации), O1 - смешанная точность, O2 - преимущественно FP16, 03 - FP16",
+        "parallel": "none",
+        "comment":"Тип распапаллеливания: none - выключено",
+        "comment":"torch - встроенное от torch распараллеливание forward и backward прохода путем деления входной пачки",
+        "comment":"full - улучшение встроенного torch распараллеливания за счет разделения функции потерь на потоки. В этом случае нет дисбаланса памяти на картах.",
+        "comment":"apex - межпроцессорное распараллеливание с помощью пакета apex. Поддерживает half float режим. Использовать только с torch.distributed.launch. ",
+        "gpus":[],
+        "comment":"Выбор карт для обучения. Без распараллеливания - [] - по умолчанию GPU 0, [1] - GPU 1",
+        "comment":"Выбор карт для обучения. C распараллеливанием - [] - по умолчанию - все карты, [0,1] - GPU 0 и GPU 1",
+        "learning_rate": 0.00005,
+        "momentum": 0.9,
+        "lrate_scale": 0.5,
+        "num_bad_loss": 0,
+        "wdecay": 0.0,
+        "test_period": 1000,
+        "min_epochs": 15,
+        "max_epochs": 15,
+        "clip": 0,
+        "iterators": {
+            "train" : {
+                "load": 0,
+                "bsize": 64,
+                "feat_range": "50/2000",
+                "win": "2/2/1",
+                "var": 1.1,
+                "ignore": -1,
+                "mode": 0
+            },
+            "test" : {
+                "load": 0,
+                "bsize": 64,
+                "feat_range": "50/4000",
+                "win": "2/2/1",
+                "var": 0.0,
+                "ignore": -1,
+                "mode": 0
+            }
+        }
+    },
+    "feat_pipeline": {
+        "pcm": {
+            "type": "pcm"
+        },
+        "feat": {
+            "type": "feat"
+        }
+    },
+    "dataset_pipeline": {
+        "null": {
+            "type": "null"
+        },
+        "cms": {
+            "type": "cms"
+        }
+    },
+    "processors": {
+        "null": {
+            "size": 40
+        },
+        "pcm": {
+            "size": 20971520
+        },
+        "feat": {
+            "rate": 8000,
+            "mfcc_en": 1,
+            "ncep": 40,
+            "num_filters": 40,
+            "transform": "none",
+            "fft_size": 256,
+            "lifter": 22,
+            "freq_band": [
+                0,
+                4000
+            ],
+            "pitch_range": [
+                50,
+                400
+            ]
+        },
+        "cms": {
+            "ff": 0.01,
+            "pitch": true,
+            "cmn_filter": 0.01,
+            "cmn_eng": -1.0
+        },
+        "win": {
+            "win": 2,
+            "step": 2
+        }
+    }
+}

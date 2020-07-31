@@ -1,0 +1,178 @@
+{
+    "model_name": "test_model",
+    "paths": {
+        "comment" : "<<< Пути к входным файлам. глобальные  >>>",
+        "work_path": "corpus_work",
+        "bin_path": "../../bin",
+        "lib_path": "../../lib",
+
+        "comment" : "<<< путь к словарю языка и списку фонем >>>",
+        "dictionary_path": "/data1/other_files/news.dic",
+        "phones_path": "/data1/other_files/phones",
+
+        "comment" : "<<< путь к дополнительнаму списку иностранных слов: формата Microsoft    майкрософт >>>",
+        "ext_words_path": "/data1/lm_corpus/dicts/eng_vocab.txt",
+
+        "comment" : "<<< путь к текстовым корпусам, конфигурации языковой модели, словарям >>>",
+        "lm_corpus_path": "/data1/lm_corpus/upper_texts/",
+        "lm_config_path": "/data1/lm_corpus/configs/mega_news.conf",
+        "lm_abbrs_path": "/data1/lm_corpus/dicts/abbrs.txt",
+        "lm_named_entities_path": "/data1/lm_corpus/dicts/named_entities.txt",
+
+        "ready": {
+            "comment" : "<<< Пути к готовым файлам>>>",
+            "make lm"         :  "none",
+            "enhance dict"    :  "none",
+            "train dnet"      :  "none",
+            "test utterances" :  "none",
+            "test model"      :  "none"
+        }
+    },
+    "datasets" : [
+        { "audio": "/data1/am_corpus/09_3-4.tar",
+        "dataset_name": "/data1/datasets/doom.data",
+        "role": "train",
+        "parts": 0.5 },
+        { "audio": "/data1/am_corpus/23-26.tar",
+        "dataset_name": "/data1/datasets/boom.data",
+        "role": "test",
+        "parts": 0.07 }
+    ],
+    "stages": {
+        "comment" : "<<< какие стадии необходимо запускать (true/false) >>>",
+        "clean"           :  true,
+        "make utt"        :  true,
+        "make lm"         :  false,
+        "enhance dict"    :  true,
+        "make datasets"   :  true,
+        "train dnet"      :  false,
+        "compile model"   :  false,
+        "test model"      :  false
+    },
+    "common_settings": {
+        "comment": "<<< число потоков и зерно рандомайзера >>>",
+        "workers": 6,
+        "seed": 32576,
+        "main_lang": "ru_RU",
+        "comment": "<<< тип уведомлений: console или telegram >>>",
+        "notifier": "console",
+        "comment": "<<< данные телеграм-бота для отправки уведомлений >>>",
+        "bot_token": "your_bot_id",
+        "bot_chat": "your_chat_id"
+    },
+    "dataset_settings": {
+        "mode": 1,
+        "sil_mode": 2,
+        "sort": 0
+    },
+    "lm_settings": {
+        "comment": "Обрезка модели для устранения маловероятных выражений. Данный параметр необходим для удаления малоповторяющихся комбинаций слов - используется для сокращения размера модели. Неубывающий порядок, сначала юниграммы, значение - минимальное количество повторений комбинации слов в тексте.",
+        "prune": [3,4,5],
+        "punctuation": true,
+        "upper_casing": true,
+        "amlm_utterances_weight": 1.0,
+        "comment": "максимальное число юниграмм из lm, которые попадут в unknown",
+        "unigrams_topn": 100000
+    },
+    "nn_settings": {
+        "bidirectional": true,
+        "neurons": 100,
+        "layers": 4,
+		"loss": "mod_ctc",
+        "comment": "Тип функций потерь: mod_ctc - модифицированный вариант ctc, ctc - стандартный torch CTC",
+		"opt": "sgd",
+        "comment":"Тип оптимизатора: sgd, adam, adamw, rmsprop. Модификации с Теплыми рестартами: sgdr, adamwr",
+		"half": true,
+        "comment":"Вычисление с HalfFloat. Доступно только при установленном APEX",
+		"opt_level": "O3",
+        "comment":"Уровень оптимизации HalfFloat: O0 - FP32(без оптимизации), O1 - смешанная точность, O2 - преимущественно FP16, 03 - FP16",
+        "parallel": "none",
+        "comment":"Тип распапаллеливания: none - выключено",
+        "comment":"torch - встроенное от torch распараллеливание forward и backward прохода путем деления входной пачки",
+        "comment":"full - улучшение встроенного torch распараллеливания за счет разделения функции потерь на потоки. В этом случае нет дисбаланса памяти на картах.",
+        "comment":"apex - межпроцессорное распараллеливание с помощью пакета apex. Поддерживает half float режим. Использовать только с torch.distributed.launch. ",
+        "gpus":[],
+        "comment":"Выбор карт для обучения. Без распараллеливания - [] - по умолчанию GPU 0, [1] - GPU 1",
+        "comment":"Выбор карт для обучения. C распараллеливанием - [] - по умолчанию - все карты, [0,1] - GPU 0 и GPU 1",
+        "learning_rate": 0.00005,
+        "momentum": 0.9,
+        "lrate_scale": 0.5,
+        "num_bad_loss": 0,
+        "wdecay": 0.0,
+        "test_period": 1000,
+        "min_epochs": 4,
+        "max_epochs": 5,
+        "clip": 0,
+        "iterators": {
+            "train" : {
+                "load": 0,
+                "bsize": 64,
+                "feat_range": "50/2000",
+                "win": "2/2/1",
+                "var": 1.1,
+                "ignore": -1,
+                "mode": 0
+            },
+            "test" : {
+                "load": 0,
+                "bsize": 64,
+                "feat_range": "50/4000",
+                "win": "2/2/1",
+                "var": 0.0,
+                "ignore": -1,
+                "mode": 0
+            }
+        }
+    },
+    "feat_pipeline": {
+        "pcm": {
+            "type": "pcm"
+        },
+        "feat": {
+            "type": "feat"
+        }
+    },
+    "dataset_pipeline": {
+        "null": {
+            "type": "null"
+        },
+        "cms": {
+            "type": "cms"
+        }
+    },
+    "processors": {
+        "null": {
+            "size": 40
+        },
+        "pcm": {
+            "size": 20971520
+        },
+        "feat": {
+            "rate": 8000,
+            "mfcc_en": 1,
+            "ncep": 40,
+            "num_filters": 40,
+            "transform": "none",
+            "fft_size": 256,
+            "lifter": 22,
+            "freq_band": [
+                0,
+                4000
+            ],
+            "pitch_range": [
+                50,
+                400
+            ]
+        },
+        "cms": {
+            "ff": 0.01,
+            "pitch": true,
+            "cmn_filter": 0.01,
+            "cmn_eng": -1.0
+        },
+        "win": {
+            "win": 2,
+            "step": 2
+        }
+    }
+}
