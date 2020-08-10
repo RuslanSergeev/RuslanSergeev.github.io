@@ -32,7 +32,7 @@ html, body {height: 100%; margin: 0; padding: 0;}
     overflow: hidden;
     /* text-align: center; */
     background-color: #444;
-    background-image: url("/home/ruslan/Pictures/new_brick.jpg");
+    background-image: url("assets/new_brick.jpg");
     width: 100%;
     min-width: 200px;
     color: white;
@@ -127,7 +127,7 @@ html, body {height: 100%; margin: 0; padding: 0;}
     padding-top: 10%;
     align: center;
     background-color: #444;
-    background-image: url("/home/ruslan/Pictures/new_brick.jpg");
+    background-image: url("assets/new_brick.jpg");
     color: white;
     width: 100%;
     min-width: 50px;
