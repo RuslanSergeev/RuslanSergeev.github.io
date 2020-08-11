@@ -22,7 +22,7 @@ html, body {height: 100%; margin: 0; padding: 0;}
     min-height: 100%;
     color: #f2f2f2;
     text-align: center;
-    padding: 14px 16px;
+    padding: 17px 16px;
     text-decoration: none;
     font-size: 20px;
   }
@@ -39,14 +39,15 @@ html, body {height: 100%; margin: 0; padding: 0;}
     /* text-align: center; */
     background-color: #444;
     background-image: url("assets/new_brick.jpg");
-    width: 100%;
+    min-width: 100%;
     min-width: 200px;
+    max-height: 100%;
     color: white;
   }
 
   .men .card {
     max-width: 90%;
-    max-height: 90%;
+    max-height: 50%;
     border-width: 1px;
     background-color: #333;
     border-radius: 10px;
@@ -71,7 +72,6 @@ html, body {height: 100%; margin: 0; padding: 0;}
     padding-bottom: 1px;
     background-color: black;
     text-align: center;
-    font-size: 20px;
     font-weight: bold;
     color: white;
   }
@@ -85,8 +85,6 @@ html, body {height: 100%; margin: 0; padding: 0;}
     border-right: 2px white solid;
     max-width: 100%;
     max-height: 100%;
-    padding-top: 5%;
-    padding-bottom: 5%;
   }
 
   .avatr_img {
@@ -99,7 +97,6 @@ html, body {height: 100%; margin: 0; padding: 0;}
 
   .card .text {
     grid-row: text_start / span 1;
-    font-size: 18px;
     text-align: left;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
@@ -107,8 +104,6 @@ html, body {height: 100%; margin: 0; padding: 0;}
     border-left: 2px white solid;
     border-right: 2px white solid;
     overflow: hidden;
-    max-width: 100%;
-    max-height: 100%;
     padding: 5%;
     background-color: #333;
     color: white;
@@ -135,7 +130,8 @@ html, body {height: 100%; margin: 0; padding: 0;}
     background-color: #444;
     background-image: url("assets/new_brick.jpg");
     color: white;
-    width: 100%;
+    min-width: 100%;
+    max-height: 100%;
     min-width: 50px;
   }
 
@@ -178,6 +174,8 @@ html, body {height: 100%; margin: 0; padding: 0;}
     background-color: black;
     font-size: 12px;
     overflow: hidden;
+    max-height: 100%;
+    min-width: 100%;
   }
 
   .mn .article {
@@ -244,8 +242,9 @@ html, body {height: 100%; margin: 0; padding: 0;}
 
   .grid-container {
     font-family: chilanka;
-    height: 100%;
-    width: 100%;
+    max-height: 100%;
+    max-width: 100%;
+    overflow: hidden;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-template-rows: 1fr 12fr 1fr;
@@ -255,7 +254,6 @@ html, body {height: 100%; margin: 0; padding: 0;}
       'down down down down down down';
     /* grid-gap: 2px; */
     background-color: black;
-    padding: 1px;
   }
 }
 
