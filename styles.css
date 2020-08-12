@@ -19,19 +19,13 @@ html, body {height: 100%; margin: 0; padding: 0;}
 
   .had a {
     float: left;
-    min-height: 100%;
+    height: 100%;
     color: #f2f2f2;
     text-align: center;
     padding: 17px 16px;
     text-decoration: none;
     font-size: 20px;
   }
-
-  .had a.active {
-    background-color: #4CAF50;
-    color: white;
-  }
-
 
   .men {
     grid-area: menu;
@@ -208,15 +202,12 @@ html, body {height: 100%; margin: 0; padding: 0;}
 
   .article .title {
     grid-area: title;
-    background-color: black;
+    background-color: #111;
     color: white;
-    /* min-width: 90%; */
     text-align: left;
     padding: 20px 20px 20px 20px;
     font-size: 20px;
     font-weight: bold;
-    /* min-height: 90%; */
-    /* background-color: green; */
   }
 
   .title a {
