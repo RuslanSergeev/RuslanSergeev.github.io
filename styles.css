@@ -33,6 +33,7 @@ html, body {height: 100%; margin: 0; padding: 0;}
     /* text-align: center; */
     background-color: #444;
     background-image: url("assets/new_brick.jpg");
+    /* background-image: linear-gradient(#BBB, black); */
     min-width: 100%;
     min-width: 200px;
     max-height: 100%;
@@ -123,6 +124,7 @@ html, body {height: 100%; margin: 0; padding: 0;}
     align: center;
     background-color: #444;
     background-image: url("assets/new_brick.jpg");
+    /* background-image: linear-gradient(#BBB, black); */
     color: white;
     min-width: 100%;
     max-height: 100%;

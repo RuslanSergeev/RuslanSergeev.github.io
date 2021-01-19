@@ -61,6 +61,14 @@ sudo update-initramfs -u
 sudo reboot
 ```
 
+Если ранее был установлен cuda-набор из .run-файла, его необходимо удалить
+```bash
+#To uninstall the CUDA Toolkit, run cuda-uninstaller in 
+/usr/local/cuda-10.2/bin
+#To uninstall the NVIDIA Driver, run 
+nvidia-uninstall
+```
+
 Установить драйверы из скачанного с сайта nvidia run-файла:
 ```bash
 sudo ./cuda_XX.Y.ZZZ_linux.run
@@ -96,5 +104,27 @@ sudo reboot #reboot required
 ```bash
 sudo apt-get install xserver-xorg-input-all
 ```
+
+# Компоненты при установке пакетным менеджером.
+```bash
+sudo apt install cuda-cudart-10-2* cuda-cudart-dev-10-2* cuda-cufft-10-2* cuda-cupti-10-2* cuda-curand-10-2*
+cuda-cusolver-10-2* cuda-cusparse-10-2* cuda-npp-10-2* cuda-nvcc-10-2* cuda-nvgraph-10-2*
+cuda-nvjpeg-10-2* cuda-nvprof-10-2* cuda-nvrtc-10-2* cuda-nvtx-10-2* cuda-repo-ubuntu1804*
+cuda-repo-ubuntu1804-11-0-local* cuda-sanitizer-api-10-2* cuda-toolkit-10-2*
+cuda-visual-tools-10-2*
+```
+
+Компоненты `nvidia-drivers` для установки. (необходимо выбрать одну версию, 435)
+```bash
+ii  libnvidia-common-435                       435.21-0ubuntu0.18.04.2                             all          Shared files used by the NVIDIA libraries
+rc  libnvidia-compute-435:amd64                435.21-0ubuntu0.18.04.2                             amd64        NVIDIA libcompute package
+ii  libnvidia-compute-435:i386                 435.21-0ubuntu0.18.04.2                             i386         NVIDIA libcompute package
+rc  nvidia-compute-utils-435                   435.21-0ubuntu0.18.04.2                             amd64        NVIDIA compute utilities
+rc  nvidia-dkms-435                            435.21-0ubuntu0.18.04.2                             amd64        NVIDIA DKMS package
+ii  nvidia-kernel-common-435       435.21-0ubuntu0.18.04.2                             amd64        Shared files used with the kernel module
+ii  nvidia-prime        0.8.8           all        Tools to enable NVIDIA's Prime
+```
+
+Также необходимо удалить `nouveau` из  `/etc/modules`
 
 [Домой](index.html)

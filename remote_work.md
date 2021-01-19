@@ -84,6 +84,7 @@ sudo apt install xtightvncviewer
 #with no @ sign
 ssh -L 5901:localhost:5901 -C -N -l $USERNAME $REMOTE_IP
 ```
+В качестве клиента для доступа к `vnc`-серверу можно использовать `vinagre`.
 
 # Настройка VPN
 [Оригинальная инструкция](https://www.cyberciti.biz/faq/howto-setup-openvpn-server-on-ubuntu-linux-14-04-or-16-04-lts/)

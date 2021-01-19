@@ -8,6 +8,9 @@ function menu_leave(event) {
 
 function tit_enter(event) {
   this.style.backgroundColor = "#444";
+  var main_area = document.querySelector('.mn');
+  main_area.innerHTML = loadPage("tasks/subwords.html");;
+  // this.innerHTML = loadPage('tasks/subwords.html');
 }
 
 function tit_leave(event) {
