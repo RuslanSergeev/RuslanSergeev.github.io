@@ -57,23 +57,10 @@ echo 'now can go to /mnt/1c/ruslan/'
 ```
 
 # Настройка VNC
-[ссылка от Артёма](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04)
-**Этот вариант не заработал.**
-Поставить сервер:
-```shell
-sudo apt install tightvncserver
-sudo apt install xfce4 xfce4-goodies
-sudo vncpasswd
-vncserver
-```
-Перед запуском сервера необходимо переписать конфиг ~/.vnc/xstartup:
-```shell
-#!/bin/bash
-xrdb $HOME/.Xresources
-startxfce4 &
-export XKL_XMODMAP_DISABLE=1
-/etc/X11/Xsession
-```
+
+**Инструкция по запуску на сервере:**
+[ссылка в сети](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-ubuntu-18-04)
+
 **На стороне клиента** : поставить клиент и запустить его:
 ```shell
 sudo apt install xtightvncviewer

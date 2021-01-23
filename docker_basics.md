@@ -1,13 +1,63 @@
-# Конспект по работе с docker
+# Notes on working with Docker.
 
-## Основные понятия
-- docker-image
+## Terminology
+- **docker-image**
 This is a blueprint-instruction to build a docker running instance.
-- docker-container
+- **docker-container**
 This is a running instance of the docker image.
 
+## Docker installation
+Install docker:
+```bash
+#!/bin/bash
+sudo apt-get update
+sudo apt-get install -y\
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+sudo apt-get update
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+if [[ $? == 0 ]]
+then
+    #make possible run docker without sudo preffix.
+    sudo groupadd docker
+    sudo usermod -aG docker $USER
+    newgrp docker
+    echo "Installation complete."
+    exit 0
+else
+    echo "Error during docker installation"
+    exit 1
+fi
+```
+Install nvidia-docker:
+```bash
+#!/bin/bash
+distribution=$(. /etc/os-release;echo $ID$VERSION_ID) \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add - \
+   && curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list \
+   | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+sudo apt-get update
+sudo apt-get install -y nvidia-docker2
+sudo systemctl restart docker
+if [[ $? == 0 ]]
+then
+    echo "Installation complete."
+    exit 0
+else
+    echo "Error during docker installation"
+    exit 1
+fi
+```
 
-## Основные команды
+## Base commands
 - watch existing images:
 ```bash
 docker images
@@ -48,13 +98,13 @@ docker volume create <volume_name>
 docker run -dp port:port -v <volume_name>:<mount_point> <image_name>
 ```
 
-## Working with mountpoints:
+## Working with mountpoints
 ```bash
 #p - port
 docker run -dp <p:p> -w <workdir> -v <host_dir>:<dir> <image>
 ```
 
-## Running stopped containers:
+## Running stopped containers
 Even if container is stopped, its content persist.
 ```bash
 #watch the containers
@@ -63,7 +113,7 @@ docker container list --all
 docker start <container_name>
 ```
 
-## Networking between containers:
+## Networking between containers
 ```bash
 #create Network
 docker network create <network_name>
@@ -93,7 +143,23 @@ docker login
 docker push <image:version>
 ```
 
-## Pulling a repo:
+## Pulling a repo
 ```bash
 docker pull <docker_id/repo:version>
+```
+
+## Build speechbox_docker
+Build without cuda:
+```bash
+docker build --build-arg platf="ubuntu:18.04" -t speechbox_docker:cpu .
+```
+
+Build with cuda:
+```bash
+docker build --build-arg platf="nvidia/cuda:10.2-base" -t speechbox_docker:cuda .
+```
+
+## Run speechbox_docker
+```bash
+sudo docker run -it --rm --gpus all speechbox_docker:cuda
 ```
